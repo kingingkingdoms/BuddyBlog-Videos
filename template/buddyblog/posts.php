@@ -63,7 +63,7 @@
                         <?php wp_link_pages( array( 'before' => '<div class="page-link"><p>' . __( 'Pages: ', 'buddyblogarticles' ), 'after' => '</p></div>', 'next_or_number' => 'number' ) ); ?>
                     </div>
 
-                    <p class="postmetadata"><?php the_tags( '<span class="tags">' . __( 'Tags: ', 'buddyblogarticles' ), ', ', '</span>' ); ?> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogarticles' ), __( '1 Comment &#187;', 'buddyblogphotos' ), __( '% Comments &#187;', 'buddyblogphotos' ) ); ?></span></p>
+                    <p class="postmetadata"><?php the_tags( '<span class="tags">' . __( 'Tags: ', 'buddyblogarticles' ), ', ', '</span>' ); ?> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogarticles' ), __( '1 Comment &#187;', 'buddyblogarticles' ), __( '% Comments &#187;', 'buddyblogarticles' ) ); ?></span></p>
 
                     <div class="post-actions">
                         <?php echo buddyblogarticles_get_post_publish_unpublish_link( get_the_ID() );?>
