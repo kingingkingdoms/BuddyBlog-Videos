@@ -63,7 +63,7 @@ function buddyblogarticles_get_total_posted( $user_id = 0 ) {
 	// Needs revisit.
 	global $wpdb;
 
-	$count = $wpdb->get_var( $wpdb->prepare( "SELECT count('*') FROM {$wpdb->posts} WHERE post_author=%d AND post_type=%s AND (post_status='publish'||post_status='draft')", $user_id, buddyblogphotos_get_posttype() ) );
+	$count = $wpdb->get_var( $wpdb->prepare( "SELECT count('*') FROM {$wpdb->posts} WHERE post_author=%d AND post_type=%s AND (post_status='publish'||post_status='draft')", $user_id, buddyblogarticles_get_posttype() ) );
 
 	return intval( $count );
 }
@@ -83,7 +83,7 @@ function buddyblogarticles_get_total_published_posts( $user_id = 0 ) {
 	// Needs revisit.
 	global $wpdb;
 
-	$count = $wpdb->get_var( $wpdb->prepare( "SELECT count('*') FROM {$wpdb->posts} WHERE  post_author=%d AND post_type=%s AND post_status='publish'", $user_id, buddyblogphotos_get_posttype() ) );
+	$count = $wpdb->get_var( $wpdb->prepare( "SELECT count('*') FROM {$wpdb->posts} WHERE  post_author=%d AND post_type=%s AND post_status='publish'", $user_id, buddyblogarticles_get_posttype() ) );
 
 	return intval( $count );
 }
