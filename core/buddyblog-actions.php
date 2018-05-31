@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Handles various BuddyBlog Actions
  */
-class BuddyBlog_Actions {
+class BuddyBlogPhotos_Actions {
 
 	/**
 	 * Class instance.
@@ -66,7 +66,7 @@ class BuddyBlog_Actions {
 	 */
 	public function delete() {
 
-		if ( ! ( bp_is_buddyblog_component() && bp_is_current_action( 'delete' ) ) ) {
+		if ( ! ( bp_is_buddyblogphotos_component() && bp_is_current_action( 'delete' ) ) ) {
 			return;
 		}
 
@@ -76,16 +76,16 @@ class BuddyBlog_Actions {
 			return;
 		}
 
-		if ( buddyblog_user_can_delete( $post_id, get_current_user_id() ) ) {
+		if ( buddyblogphotos_user_can_delete( $post_id, get_current_user_id() ) ) {
 
 			wp_delete_post( $post_id, true );
-			bp_core_add_message( __( 'Post deleted successfully' ), 'buddyblog' );
+			bp_core_add_message( __( 'Post deleted successfully' ), 'buddyblogphotos' );
 			// redirect.
-			wp_redirect( buddyblog_get_home_url() ); // hardcoding bad.
+			wp_redirect( buddyblogphotos_get_home_url() ); // hardcoding bad.
 			exit( 0 );
 
 		} else {
-			bp_core_add_message( __( 'You should not perform unauthorized actions', 'buddyblog' ), 'error' );
+			bp_core_add_message( __( 'You should not perform unauthorized actions', 'buddyblogphotos' ), 'error' );
 		}
 
 	}
@@ -95,7 +95,7 @@ class BuddyBlog_Actions {
 	 */
 	public function publish() {
 
-		if ( ! ( bp_is_buddyblog_component() && bp_is_current_action( 'publish' ) ) ) {
+		if ( ! ( bp_is_buddyblogphotos_component() && bp_is_current_action( 'publish' ) ) ) {
 			return;
 		}
 
@@ -105,13 +105,13 @@ class BuddyBlog_Actions {
 			return;
 		}
 
-		if ( buddyblog_user_can_publish( get_current_user_id(), $id ) ) {
+		if ( buddyblogphotos_user_can_publish( get_current_user_id(), $id ) ) {
 
 			wp_publish_post( $id );// change status to publish.
-			bp_core_add_message( __( 'Post Published', 'buddyblog' ) );
+			bp_core_add_message( __( 'Post Published', 'buddyblogphotos' ) );
 		}
 
-		bp_core_redirect( buddyblog_get_home_url() );
+		bp_core_redirect( buddyblogphotos_get_home_url() );
 	}
 
 	/**
@@ -119,7 +119,7 @@ class BuddyBlog_Actions {
 	 */
 	public function unpublish() {
 
-		if ( ! ( bp_is_buddyblog_component() && bp_is_current_action( 'unpublish' ) ) ) {
+		if ( ! ( bp_is_buddyblogphotos_component() && bp_is_current_action( 'unpublish' ) ) ) {
 			return;
 		}
 
@@ -129,17 +129,17 @@ class BuddyBlog_Actions {
 			return;
 		}
 
-		if ( buddyblog_user_can_unpublish( get_current_user_id(), $id ) ) {
+		if ( buddyblogphotos_user_can_unpublish( get_current_user_id(), $id ) ) {
 
 			$post                = get_post( $id, ARRAY_A );
 			$post['post_status'] = 'draft';
 			wp_update_post( $post );
 			// unpublish.
-			bp_core_add_message( __( 'Post unpublished', 'buddyblog' ) );
+			bp_core_add_message( __( 'Post unpublished', 'buddyblogphotos' ) );
 
 		}
 
-		bp_core_redirect( buddyblog_get_home_url() );
+		bp_core_redirect( buddyblogphotos_get_home_url() );
 
 	}
 
@@ -153,12 +153,12 @@ class BuddyBlog_Actions {
 	 */
 	public function on_save( $post_id, $is_new, $form_object ) {
 
-		$post_redirect = buddyblog_get_option( 'post_update_redirect' );
+		$post_redirect = buddyblogphotos_get_option( 'post_update_redirect' );
 
 		$url = '';
 
 		if ( 'archive' == $post_redirect ) {
-			$url = buddyblog_get_home_url();
+			$url = buddyblogphotos_get_home_url();
 		} elseif ( $post_redirect == 'single' && get_post_status( $post_id ) == 'publish' ) {
 			// go to single post.
 			$url = get_permalink( $post_id );
@@ -181,37 +181,37 @@ class BuddyBlog_Actions {
 			return;
 		}
 
-		$post_status = buddyblog_get_option( 'post_status' );
+		$post_status = buddyblogphotos_get_option( 'post_status' );
 		$user_id     = get_current_user_id();
 
-		if ( ! buddyblog_user_can_post( $user_id ) ) {
+		if ( ! buddyblogphotos_user_can_post( $user_id ) ) {
 			$post_status = 'draft';
 		}
 
 		$settings = array(
-			'post_type'             => buddyblog_get_posttype(),
+			'post_type'             => buddyblogphotos_get_posttype(),
 			'post_status'           => $post_status,
-			'comment_status'        => buddyblog_get_option('show_comment_option') ? 'closed' : buddyblog_get_option( 'comment_status' ),
-			'show_comment_option'   => buddyblog_get_option( 'show_comment_option' ),
+			'comment_status'        => buddyblogphotos_get_option('show_comment_option') ? 'closed' : buddyblogphotos_get_option( 'comment_status' ),
+			'show_comment_option'   => buddyblogphotos_get_option( 'show_comment_option' ),
 			'custom_field_title'    => '', // we are only using it for hidden field, so no need to show it.
 			'custom_fields'         => array(
-				'_is_buddyblog_post' => array(
+				'_is_buddyblogphotos_post' => array(
 					'type'    => 'hidden',
 					'label'   => '',
 					'default' => 1,
 				),
 			),
-			'allow_upload'          => buddyblog_get_option( 'allow_upload' ),
+			'allow_upload'          => buddyblogphotos_get_option( 'allow_upload' ),
 			'upload_count'          => 0,
 			'has_post_thumbnail'    => 1,
-			'current_user_can_post' => current_user_can( buddyblog_get_option( 'post_cap' ) ),
+			'current_user_can_post' => current_user_can( buddyblogphotos_get_option( 'post_cap' ) ),
 			'update_callback'       => array( $this, 'on_save' ),
 		);
 
-		if ( buddyblog_get_option( 'enable_taxonomy' ) ) {
+		if ( buddyblogphotos_get_option( 'enable_taxonomy' ) ) {
 
 			$taxonomies = array();
-			$tax        = buddyblog_get_option( 'allowed_taxonomies' );
+			$tax        = buddyblogphotos_get_option( 'allowed_taxonomies' );
 
 			if ( ! empty( $tax ) ) {
 
@@ -233,13 +233,12 @@ class BuddyBlog_Actions {
 		}
 
 		// use it to add extra fields or filter the post type etc.
-		$settings = apply_filters( 'buddyblog_post_form_settings', $settings );
+		$settings = apply_filters( 'buddyblogphotos_post_form_settings', $settings );
 
-		bp_new_simple_blog_post_form( 'buddyblog-user-posts', $settings ); // the blog form.
+		bp_new_simple_blog_post_form( 'buddyblogphotos-user-posts', $settings ); // the blog form.
 
 	}
 }
 
 // instantiate.
-BuddyBlog_Actions::get_instance();
-
+BuddyBlogPhotos_Actions::get_instance();
