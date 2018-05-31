@@ -17,7 +17,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * Screen Handler.
  */
-class BuddyBlogPhotos_Screens {
+class BuddyBlogArticles_Screens {
 
 	/**
 	 * Singleton instance.
@@ -50,9 +50,9 @@ class BuddyBlogPhotos_Screens {
 	/**
 	 * Handles My Posts screen with the single post/edit post view
 	 */
-	public function my_photos() {
+	public function my_articles() {
 
-		if ( buddyblogphotos_is_single_post() ) {
+		if ( buddyblogarticles_is_single_post() ) {
 			add_action( 'bp_template_content', array( $this, 'get_single_post_data' ) );
 		} else { // list all posts by user.
 			add_action( 'bp_template_content', array( $this, 'get_posts_list_data' ) );
@@ -89,7 +89,7 @@ class BuddyBlogPhotos_Screens {
 
 		ob_start();
 
-		buddyblogphotos_load_template( 'single.php' );
+		buddyblogarticles_load_template( 'single.php' );
 
 		$content = ob_get_clean();
 
@@ -103,7 +103,7 @@ class BuddyBlogPhotos_Screens {
 
 		ob_start();
 
-		buddyblogphotos_load_template( 'posts.php' );
+		buddyblogarticles_load_template( 'posts.php' );
 
 		$content = ob_get_clean();
 
@@ -117,7 +117,7 @@ class BuddyBlogPhotos_Screens {
 
 		ob_start();
 
-		buddyblogphotos_load_template( 'edit.php' );
+		buddyblogarticles_load_template( 'edit.php' );
 
 		$content = ob_get_clean();
 
@@ -127,4 +127,4 @@ class BuddyBlogPhotos_Screens {
 }
 
 
-BuddyBlogPhotos_Screens::get_instance();
+BuddyBlogArticles_Screens::get_instance();
