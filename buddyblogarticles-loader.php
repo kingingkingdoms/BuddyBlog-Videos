@@ -13,7 +13,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * BuddyBlog Component
  */
-class BuddyBlogPhotos_Core_Component extends BP_Component {
+class BuddyBlogArticles_Core_Component extends BP_Component {
 
 	/**
 	 * Initialize component
@@ -21,8 +21,8 @@ class BuddyBlogPhotos_Core_Component extends BP_Component {
 	public function __construct() {
 
 		parent::start(
-			'buddyblogphotos',
-			__( 'BuddyBlog Photos', 'buddyblogphotos' ),
+			'buddyblogarticles',
+			__( 'BuddyBlog Articles', 'buddyblogphotos' ),
 			untrailingslashit( plugin_dir_path( __FILE__ ) )
 		);
 
@@ -57,13 +57,13 @@ class BuddyBlogPhotos_Core_Component extends BP_Component {
 	public function setup_globals( $globals = array() ) {
 
 		// Define a slug, if necessary.
-		if ( ! defined( 'BP_BUDDYBLOGPHOTOS_SLUG' ) ) {
-			define( 'BP_BUDDYBLOGPHOTOS_SLUG', $this->id );
+		if ( ! defined( 'BP_BUDDYBLOGARTICLES_SLUG' ) ) {
+			define( 'BP_BUDDYBLOGARTICLES_SLUG', $this->id );
 		}
 
 		$globals = array(
-			'slug'                  => BP_BUDDYBLOGPHOTOS_SLUG,
-			'root_slug'             => BP_BUDDYBLOGPHOTOS_SLUG,
+			'slug'                  => BP_BUDDYBLOGARTICLES_SLUG,
+			'root_slug'             => BP_BUDDYBLOGARTICLES_SLUG,
 			'has_directory'         => false,
 			'notification_callback' => 'buddyblogphotos_format_notifications',
 			'search_string'         => __( 'Search Posts...', 'buddyblogphotos' ),
@@ -104,7 +104,7 @@ class BuddyBlogPhotos_Core_Component extends BP_Component {
 			'slug'                => $this->slug,
 			'position'            => 70,
 			'screen_function'     => array( $screen, 'my_photos' ),
-			'default_subnav_slug' => BUDDYBLOGPHOTOS_ARCHIVE_SLUG,
+			'default_subnav_slug' => BUDDYBLOGARTICLES_ARCHIVE_SLUG,
 			'item_css_id'         => $this->id,
 		);
 
@@ -117,7 +117,7 @@ class BuddyBlogPhotos_Core_Component extends BP_Component {
 		// Add the Group Invites nav item.
 		$sub_nav['my-photos'] = array(
 			'name'            => __( 'Posts', 'buddyblogphotos' ),
-			'slug'            => BUDDYBLOGPHOTOS_ARCHIVE_SLUG,
+			'slug'            => BUDDYBLOGARTICLES_ARCHIVE_SLUG,
 			'parent_url'      => $blog_link,
 			'parent_slug'     => $this->slug,
 			'screen_function' => array( $screen, 'my_photos' ),
