@@ -20,15 +20,15 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @param string $template template name.
  */
-function buddyblog_load_template( $template ) {
+function buddyblogphotos_load_template( $template ) {
 
-	$template_dir = apply_filters( 'buddyblog_template_dir', 'buddyblog' );
+	$template_dir = apply_filters( 'buddyblogphotos_template_dir', 'buddyblogphotos' );
 
 	// check for buddyblog/template-file.php in the child theme's dir and then in parent's.
 	$located = locate_template( array( $template_dir . '/' . $template ), false );
 
 	if ( ! $located ) {
-		$located = buddyblog()->get_path() . 'template/buddyblog/' . $template;
+		$located = buddyblogphotos()->get_path() . 'template/buddyblog/' . $template;
 	}
 
 	if ( is_readable( $located ) ) {
@@ -43,7 +43,7 @@ function buddyblog_load_template( $template ) {
  *
  * @return string
  */
-function buddyblog_get_post_url( $post_id ) {
+function buddyblogphotos_get_post_url( $post_id ) {
 
 	$bp = buddypress();
 
@@ -51,11 +51,11 @@ function buddyblog_get_post_url( $post_id ) {
 
 	$post = get_post( $post_id );
 
-	if ( get_post_type( $post ) != buddyblog_get_posttype() ) {
+	if ( get_post_type( $post ) != buddyblogphotos_get_posttype() ) {
 		return get_permalink( $post_id );
 	}
 
-	if ( buddyblog_use_slug_in_permalink() ) {
+	if ( buddyblogphotos_use_slug_in_permalink() ) {
 
 		$id_or_slug = $post->post_name;
 
@@ -64,7 +64,7 @@ function buddyblog_get_post_url( $post_id ) {
 		$id_or_slug = $post->ID;
 	}
 
-	return bp_core_get_user_domain( $post->post_author ) . $bp->buddyblog->slug . '/' . BUDDYBLOG_ARCHIVE_SLUG . '/' . $id_or_slug . '/';
+	return bp_core_get_user_domain( $post->post_author ) . $bp->buddyblogphotos->slug . '/' . BUDDYBLOGPHOTOS_ARCHIVE_SLUG . '/' . $id_or_slug . '/';
 }
 
 /**
@@ -74,7 +74,7 @@ function buddyblog_get_post_url( $post_id ) {
  *
  * @return string
  */
-function buddyblog_get_edit_url( $post_id = 0 ) {
+function buddyblogphotos_get_edit_url( $post_id = 0 ) {
 
 	$bp = buddypress();
 
@@ -91,7 +91,7 @@ function buddyblog_get_edit_url( $post_id = 0 ) {
 	$post = get_post( $post_id );
 
 	// if the author of the post is same as the loggedin user or the logged in user is admin.
-	if ( $post->post_type != buddyblog_get_posttype() ) {
+	if ( $post->post_type != buddyblogphotos_get_posttype() ) {
 		return '';
 	}
 
@@ -101,12 +101,12 @@ function buddyblog_get_edit_url( $post_id = 0 ) {
 
 	$action_name = 'edit';
 
-	if ( current_user_can( buddyblog_get_option( 'dashboard_edit_cap' ) ) ) {
+	if ( current_user_can( buddyblogphotos_get_option( 'dashboard_edit_cap' ) ) ) {
 		return get_edit_post_link( $post );
 	}
 
 	// if we are here, we can allow user to edit the post.
-	return bp_core_get_user_domain( $post->post_author ) . $bp->buddyblog->slug . "/{$action_name}/" . $post->ID . '/';
+	return bp_core_get_user_domain( $post->post_author ) . $bp->buddyblogphotos->slug . "/{$action_name}/" . $post->ID . '/';
 }
 
 /**
@@ -117,17 +117,17 @@ function buddyblog_get_edit_url( $post_id = 0 ) {
  *
  * @return string
  */
-function buddyblog_get_edit_link( $id = 0, $label = '' ) {
+function buddyblogphotos_get_edit_link( $id = 0, $label = '' ) {
 
-	if ( ! buddyblog_get_option( 'allow_edit' ) ) {
+	if ( ! buddyblogphotos_get_option( 'allow_edit' ) ) {
 		return '';
 	}
 
 	if ( empty( $label ) ) {
-		$label = __( 'Edit', 'buddyblog' );
+		$label = __( 'Edit', 'buddyblogphotos' );
 	}
 
-	$url = buddyblog_get_edit_url( $id );
+	$url = buddyblogphotos_get_edit_url( $id );
 
 	if ( ! $url ) {
 		return '';
@@ -144,14 +144,14 @@ function buddyblog_get_edit_link( $id = 0, $label = '' ) {
  *
  * @return string
  */
-function buddyblog_get_delete_link( $id = 0, $label = '' ) {
+function buddyblogphotos_get_delete_link( $id = 0, $label = '' ) {
 
-	if ( ! buddyblog_user_can_delete( $id, get_current_user_id() ) ) {
+	if ( ! buddyblogphotos_user_can_delete( $id, get_current_user_id() ) ) {
 		return '';
 	}
 
 	if ( empty( $label ) ) {
-		$label = __( 'Delete', 'buddyblog' );
+		$label = __( 'Delete', 'buddyblogphotos' );
 	}
 
 	$bp = buddypress();
@@ -160,7 +160,7 @@ function buddyblog_get_delete_link( $id = 0, $label = '' ) {
 
 	$action_name = 'delete';
 
-	$url = bp_core_get_user_domain( $post->post_author ) . $bp->buddyblog->slug . "/{$action_name}/" . $post->ID . '/';
+	$url = bp_core_get_user_domain( $post->post_author ) . $bp->buddyblogphotos->slug . "/{$action_name}/" . $post->ID . '/';
 
 	return "<a href='{$url}' class='confirm' >{$label}</a>";
 
@@ -171,7 +171,7 @@ function buddyblog_get_delete_link( $id = 0, $label = '' ) {
  *
  * @return string
  */
-function buddyblog_get_new_url() {
+function buddyblogphotos_get_new_url() {
 
 	$bp = buddypress();
 
@@ -182,7 +182,7 @@ function buddyblog_get_new_url() {
 	}
 
 	// if we are here, we can allow user to edit the post.
-	return bp_core_get_user_domain( $user_id ) . $bp->buddyblog->slug . '/edit/';
+	return bp_core_get_user_domain( $user_id ) . $bp->buddyblogphotos->slug . '/edit/';
 }
 
 /**
@@ -192,9 +192,9 @@ function buddyblog_get_new_url() {
  *
  * @return string Link to the single post
  */
-function buddyblog_get_single_url( $post_id = 0 ) {
+function buddyblogphotos_get_single_url( $post_id = 0 ) {
 
-	if ( ! buddyblog_is_single_post() ) {
+	if ( ! buddyblogphotos_is_single_post() ) {
 		return false;
 	}
 
@@ -214,7 +214,7 @@ function buddyblog_get_single_url( $post_id = 0 ) {
  *
  * @global WP_Query $wp_query
  */
-function buddyblog_paginate() {
+function buddyblogphotos_paginate() {
 
 	// get total number of pages.
 	global $wp_query;
@@ -231,9 +231,9 @@ function buddyblog_paginate() {
 		$perma_struct = get_option( 'permalink_structure' );
 
 		$format = empty( $perma_struct ) ? '&page=%#%' : 'page/%#%/';
-		$base   = trailingslashit( buddyblog_get_home_url() . BUDDYBLOG_ARCHIVE_SLUG );
+		$base   = trailingslashit( buddyblogphotos_get_home_url() . BUDDYBLOGPHOTOS_ARCHIVE_SLUG );
 
-		if ( bp_is_buddyblog_component() ) {
+		if ( bp_is_buddyblogphotos_component() ) {
 			//$base = $base.'/';
 		}
 
