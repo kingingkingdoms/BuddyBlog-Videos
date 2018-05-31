@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBlog
+ * Plugin Name: BuddyBlog Photos
  * Version: 1.3.2
  * Author: BuddyDev
  * Author URI: https://buddydev.com/members/sbrajesh/
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * BuddyBlog main class
  */
-class BuddyBlog {
+class BuddyBlogPhotos {
 
 	/**
 	 * Singleton instance
@@ -90,8 +90,8 @@ class BuddyBlog {
 	 * Setup constants.
 	 */
 	private function setup_constants() {
-		if ( ! defined( 'BUDDYBLOG_ARCHIVE_SLUG' ) ) {
-			define( 'BUDDYBLOG_ARCHIVE_SLUG', 'my-posts' );
+		if ( ! defined( 'BUDDYBLOGPHOTOS_ARCHIVE_SLUG' ) ) {
+			define( 'BUDDYBLOGPHOTOS_ARCHIVE_SLUG', 'my-photos' );
 		}
 	}
 	/**
@@ -99,7 +99,7 @@ class BuddyBlog {
 	 */
 	public function load() {
 		$files = array(
-			'buddyblog-loader.php',
+			'buddyblogphotos-loader.php',
 		);
 
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
@@ -115,14 +115,14 @@ class BuddyBlog {
 	 * Load translation files
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'buddyblog', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'buddyblogphotos', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
 	 * Load comment js on singular posts.
 	 */
 	public function load_comment_js() {
-		if ( bp_is_current_component( 'buddyblog' ) && bp_is_current_action( 'my-posts' ) ) {
+		if ( bp_is_current_component( 'buddyblogphotos' ) && bp_is_current_action( 'my-photos' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 	}
@@ -132,8 +132,8 @@ class BuddyBlog {
 	 */
 	public function install() {
 		$default = array(
-			//'root_slug'			=> 'buddyblog',
-			'post_type'             => 'post',
+			//'root_slug'			=> 'buddyblogphotos',
+			'post_type'             => array( 'post', 'article' ),
 			'post_status'           => 'publish',
 			'comment_status'        => 'open',
 			'show_comment_option'   => 1,
@@ -156,8 +156,8 @@ class BuddyBlog {
 			'max_upload_count'      => 2,
 		);
 
-		if ( ! get_site_option( 'buddyblog-settings' ) ) {
-			add_site_option( 'buddyblog-settings', $default );
+		if ( ! get_site_option( 'buddyblogphotos-settings' ) ) {
+			add_site_option( 'buddyblogphotos-settings', $default );
 		}
 
 	}
@@ -195,9 +195,9 @@ class BuddyBlog {
  *
  * @return BuddyBlog
  */
-function buddyblog() {
-	return BuddyBlog::get_instance();
+function buddyblogphotos() {
+	return BuddyBlogPhotos::get_instance();
 }
 
 // Instantiate.
-buddyblog();
+buddyblogphotos();
