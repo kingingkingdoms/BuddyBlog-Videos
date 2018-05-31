@@ -132,8 +132,8 @@ class BuddyBlogPhotos {
 	 */
 	public function install() {
 		$default = array(
-			//'root_slug'			=> 'buddyblogphotos',
-			'post_type'             => array( 'post', 'article' ),
+			//'root_slug'		=> 'buddyblogphotos',
+			'post_type'             => 'post',
 			'post_status'           => 'publish',
 			'comment_status'        => 'open',
 			'show_comment_option'   => 1,
