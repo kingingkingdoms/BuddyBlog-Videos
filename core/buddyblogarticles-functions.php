@@ -139,7 +139,7 @@ function buddyblogvideos_is_single_post() {
 		$post_id = intval( bp_action_variable( 0 ) );
 	}
 
-	if ( bp_is_buddyblogvideos_component() && $action == BUDDYBLOGARTICLES_ARCHIVE_SLUG && ! empty( $post_id ) ) {
+	if ( bp_is_buddyblogvideos_component() && $action == BUDDYBLOGVIDEOS_ARCHIVE_SLUG && ! empty( $post_id ) ) {
 		return true;
 	}
 
@@ -156,7 +156,7 @@ function buddyblogvideos_is_posts_archive() {
 	$action  = bp_current_action();
 	$post_id = bp_action_variable( 0 );
 
-	if ( bp_is_buddyblogvideos_component() && $action == BUDDYBLOGARTICLES_ARCHIVE_SLUG && empty( $post_id ) ) {
+	if ( bp_is_buddyblogvideos_component() && $action == BUDDYBLOGVIDEOS_ARCHIVE_SLUG && empty( $post_id ) ) {
 		return true;
 	}
 
