@@ -254,7 +254,7 @@ class BuddyBlogArticles_Admin_Settings_Helper {
 	 * Add option page
 	 */
 	public function admin_menu() {
-		add_options_page( __( 'BuddyBlogArticles Settings', 'buddyblogarticles' ), __( 'BuddyBlogArticles', 'buddyblogarticles' ), 'manage_options', 'buddyblogarticles', array(
+		add_options_page( __( 'BuddyBlogArticles Settings', 'buddyblogarticles' ), __( 'BuddyBlog Articles', 'buddyblogarticles' ), 'manage_options', 'buddyblogarticles', array(
 			$this->page,
 			'render',
 		) );
