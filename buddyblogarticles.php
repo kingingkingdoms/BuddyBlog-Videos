@@ -133,7 +133,7 @@ class BuddyBlogArticles {
 	public function install() {
 		$default = array(
 			//'root_slug'		=> 'articles',
-			'post_type'             => array( 'articles','post' ),
+			'post_type'             => array( 'article','post' ),
 			'post_status'           => 'publish',
 			'comment_status'        => 'open',
 			'show_comment_option'   => 1,
