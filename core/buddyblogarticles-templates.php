@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  */
 function buddyblogarticles_load_template( $template ) {
 
-	$template_dir = apply_filters( 'buddyblogarticles_template_dir', 'buddyblogarticles' );
+	$template_dir = apply_filters( 'buddyblog_template_dir', 'buddyblogarticles' );
 
 	// check for buddyblog/template-file.php in the child theme's dir and then in parent's.
 	$located = locate_template( array( $template_dir . '/' . $template ), false );
