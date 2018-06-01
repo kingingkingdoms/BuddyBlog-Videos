@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * BuddyBlog main class
  */
-class BuddyBlogPhotos {
+class BuddyBlogArticles {
 
 	/**
 	 * Singleton instance
@@ -90,8 +90,8 @@ class BuddyBlogPhotos {
 	 * Setup constants.
 	 */
 	private function setup_constants() {
-		if ( ! defined( 'BUDDYBLOGPHOTOS_ARCHIVE_SLUG' ) ) {
-			define( 'BUDDYBLOGPHOTOS_ARCHIVE_SLUG', 'my-photos' );
+		if ( ! defined( 'BUDDYBLOGARTICLES_ARCHIVE_SLUG' ) ) {
+			define( 'BUDDYBLOGARTICLES_ARCHIVE_SLUG', 'my-articles' );
 		}
 	}
 	/**
@@ -99,7 +99,7 @@ class BuddyBlogPhotos {
 	 */
 	public function load() {
 		$files = array(
-			'buddyblogphotos-loader.php',
+			'buddyblogarticles-loader.php',
 		);
 
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
@@ -115,14 +115,14 @@ class BuddyBlogPhotos {
 	 * Load translation files
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'buddyblogphotos', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'buddyblogarticles', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
 	 * Load comment js on singular posts.
 	 */
 	public function load_comment_js() {
-		if ( bp_is_current_component( 'buddyblogphotos' ) && bp_is_current_action( 'my-photos' ) ) {
+		if ( bp_is_current_component( 'buddyblogarticles' ) && bp_is_current_action( 'my-articles' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 	}
@@ -132,7 +132,7 @@ class BuddyBlogPhotos {
 	 */
 	public function install() {
 		$default = array(
-			//'root_slug'		=> 'buddyblogphotos',
+			//'root_slug'		=> 'articles',
 			'post_type'             => 'post',
 			'post_status'           => 'publish',
 			'comment_status'        => 'open',
@@ -156,8 +156,8 @@ class BuddyBlogPhotos {
 			'max_upload_count'      => 2,
 		);
 
-		if ( ! get_site_option( 'buddyblogphotos-settings' ) ) {
-			add_site_option( 'buddyblogphotos-settings', $default );
+		if ( ! get_site_option( 'buddyblogarticles-settings' ) ) {
+			add_site_option( 'buddyblogarticles-settings', $default );
 		}
 
 	}
@@ -195,9 +195,9 @@ class BuddyBlogPhotos {
  *
  * @return BuddyBlog
  */
-function buddyblogphotos() {
-	return BuddyBlogPhotos::get_instance();
+function buddyblogarticles() {
+	return BuddyBlogArticles::get_instance();
 }
 
 // Instantiate.
-buddyblogphotos();
+buddyblogarticles();
