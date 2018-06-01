@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
  *
  * @return bool
  */
-function buddyblogarticles_user_can_publish( $user_id, $post_id = 0 ) {
+function buddyblogvideos_user_can_publish( $user_id, $post_id = 0 ) {
 
 	// super admins can always post.
 	if ( is_super_admin() ) {
@@ -32,20 +32,20 @@ function buddyblogarticles_user_can_publish( $user_id, $post_id = 0 ) {
 	$can_publish = false;
 	// by default, everyone can publish, we assume.
 	if ( is_user_logged_in() ) {
-		$can_publish = current_user_can( buddyblogarticles_get_option( 'publish_cap' ) );
+		$can_publish = current_user_can( buddyblogvideos_get_option( 'publish_cap' ) );
 	}
 	// has the admin set a limit on no. of posts?
-	if ( is_user_logged_in() && buddyblogarticles_limit_no_of_posts() ) {
+	if ( is_user_logged_in() && buddyblogvideos_limit_no_of_posts() ) {
 		// let us find the user id
 		// find remaining posts count.
-		$remaining_posts = buddyblogarticles_get_remaining_posts( $user_id );
+		$remaining_posts = buddyblogvideos_get_remaining_posts( $user_id );
 
 		if ( $remaining_posts > 0 ) {
 			$can_publish = 1;
 		}
 	}
 
-	return apply_filters( 'buddyblogarticles_user_can_publish', $can_publish, $user_id );
+	return apply_filters( 'buddyblogvideos_user_can_publish', $can_publish, $user_id );
 }
 
 /**
@@ -57,7 +57,7 @@ function buddyblogarticles_user_can_publish( $user_id, $post_id = 0 ) {
  *
  * @return bool
  */
-function buddyblogarticles_user_can_unpublish( $user_id, $post_id ) {
+function buddyblogvideos_user_can_unpublish( $user_id, $post_id ) {
 
 	$can_do = false;
 	// non logged in users can not post.
@@ -69,7 +69,7 @@ function buddyblogarticles_user_can_unpublish( $user_id, $post_id ) {
 
 		$can_do = true;
 
-	} elseif ( buddyblogarticles_get_option( 'allow_unpublishing' ) ) {
+	} elseif ( buddyblogvideos_get_option( 'allow_unpublishing' ) ) {
 
 		$post = get_post( $post_id );
 
@@ -79,7 +79,7 @@ function buddyblogarticles_user_can_unpublish( $user_id, $post_id ) {
 	}
 
 
-	return apply_filters( 'buddyblogarticles_user_can_unpublish', $can_do, $user_id, $post_id );
+	return apply_filters( 'buddyblogvideos_user_can_unpublish', $can_do, $user_id, $post_id );
 }
 
 /**
@@ -92,15 +92,15 @@ function buddyblogarticles_user_can_unpublish( $user_id, $post_id ) {
  *
  * @return bool
  */
-function buddyblogarticles_user_can_post( $user_id = 0 ) {
+function buddyblogvideos_user_can_post( $user_id = 0 ) {
 	// non logged in users can not post.
 	$can_post = false;
 
-	if ( current_user_can( buddyblogarticles_get_option( 'post_cap' ) ) ) {
+	if ( current_user_can( buddyblogvideos_get_option( 'post_cap' ) ) ) {
 		$can_post = true;
 	}
 
-	return apply_filters( 'buddyblogarticles_user_can_post', $can_post, $user_id );
+	return apply_filters( 'buddyblogvideos_user_can_post', $can_post, $user_id );
 }
 
 /**
@@ -111,7 +111,7 @@ function buddyblogarticles_user_can_post( $user_id = 0 ) {
  *
  * @return bool
  */
-function buddyblogarticles_user_can_edit( $post_id, $user_id = 0 ) {
+function buddyblogvideos_user_can_edit( $post_id, $user_id = 0 ) {
 	// if user is logged in and the post id is given only then we should proceed.
 	if ( ! $post_id || ! is_user_logged_in() ) {
 		return false;
@@ -119,7 +119,7 @@ function buddyblogarticles_user_can_edit( $post_id, $user_id = 0 ) {
 
 	if ( is_super_admin() ) {
 		return true;
-	} elseif ( buddyblogarticles_get_option( 'allow_edit' ) ) {
+	} elseif ( buddyblogvideos_get_option( 'allow_edit' ) ) {
 		// editing not allowed.
 		return false;
 	}
@@ -145,7 +145,7 @@ function buddyblogarticles_user_can_edit( $post_id, $user_id = 0 ) {
  *
  * @return bool
  */
-function buddyblogarticles_user_can_delete( $post_id, $user_id = 0 ) {
+function buddyblogvideos_user_can_delete( $post_id, $user_id = 0 ) {
 
 
 	if ( ! $post_id && in_the_loop() ) {
@@ -159,7 +159,7 @@ function buddyblogarticles_user_can_delete( $post_id, $user_id = 0 ) {
 	if ( is_super_admin() ) {
 		return true;
 
-	} elseif ( ! buddyblogarticles_get_option( 'allow_delete' ) ) {
+	} elseif ( ! buddyblogvideos_get_option( 'allow_delete' ) ) {
 		// if deleting post is disabled.
 		return false;
 	}
