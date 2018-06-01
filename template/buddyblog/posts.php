@@ -4,7 +4,7 @@
  */
 ?>
 
-<?php if ( buddyblogarticles_user_has_posted() ): ?>
+<?php if ( buddyblogvideos_user_has_posted() ): ?>
 <?php
     //let us build the post query
     if ( bp_is_my_profile() || is_super_admin() ) {
@@ -18,7 +18,7 @@
     
 	$query_args = array(
 		'author'        => bp_displayed_user_id(),
-		'post_type'     => buddyblogarticles_get_posttype(),
+		'post_type'     => buddyblogvideos_get_posttype(),
 		'post_status'   => $status,
 		'paged'         => intval( $paged )
     );
@@ -36,10 +36,10 @@
 
                 <div class="author-box">
                     <?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
-                    <p><?php printf( _x( 'by %s', 'Post written by...', 'buddyblogarticles' ), bp_core_get_userlink( $post->post_author ) ); ?></p>
+                    <p><?php printf( _x( 'by %s', 'Post written by...', 'buddyblogvideos' ), bp_core_get_userlink( $post->post_author ) ); ?></p>
 
                     <?php if ( is_sticky() ) : ?>
-                        <span class="activity sticky-post"><?php _ex( 'Featured', 'Sticky post', 'buddyblogarticles' ); ?></span>
+                        <span class="activity sticky-post"><?php _ex( 'Featured', 'Sticky post', 'buddyblogvideos' ); ?></span>
                     <?php endif; ?>
                 </div>
 
@@ -53,22 +53,22 @@
 
                     <?php endif;?>
 
-                    <h2 class="posttitle"> <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddyblogarticles' ); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a> </h2>
+                    <h2 class="posttitle"> <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddyblogvideos' ); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a> </h2>
 
-                    <p class="date"><?php printf( __( '%1$s <span>in %2$s</span>', 'buddyblogarticles' ), get_the_date(), get_the_category_list( ', ' ) ); ?></p>
+                    <p class="date"><?php printf( __( '%1$s <span>in %2$s</span>', 'buddyblogvideos' ), get_the_date(), get_the_category_list( ', ' ) ); ?></p>
 
                     <div class="entry">
 
-                        <?php the_content( __( 'Read the rest of this entry &rarr;', 'buddyblogarticles' ) ); ?>
-                        <?php wp_link_pages( array( 'before' => '<div class="page-link"><p>' . __( 'Pages: ', 'buddyblogarticles' ), 'after' => '</p></div>', 'next_or_number' => 'number' ) ); ?>
+                        <?php the_content( __( 'Read the rest of this entry &rarr;', 'buddyblogvideos' ) ); ?>
+                        <?php wp_link_pages( array( 'before' => '<div class="page-link"><p>' . __( 'Pages: ', 'buddyblogvideos' ), 'after' => '</p></div>', 'next_or_number' => 'number' ) ); ?>
                     </div>
 
-                    <p class="postmetadata"><?php the_tags( '<span class="tags">' . __( 'Tags: ', 'buddyblogarticles' ), ', ', '</span>' ); ?> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogarticles' ), __( '1 Comment &#187;', 'buddyblogarticles' ), __( '% Comments &#187;', 'buddyblogarticles' ) ); ?></span></p>
+                    <p class="postmetadata"><?php the_tags( '<span class="tags">' . __( 'Tags: ', 'buddyblogvideos' ), ', ', '</span>' ); ?> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogvideos' ), __( '1 Comment &#187;', 'buddyblogvideos' ), __( '% Comments &#187;', 'buddyblogvideos' ) ); ?></span></p>
 
                     <div class="post-actions">
-                        <?php echo buddyblogarticles_get_post_publish_unpublish_link( get_the_ID() );?>
-                        <?php echo buddyblogarticles_get_edit_link();?>
-                        <?php echo buddyblogarticles_get_delete_link();?>
+                        <?php echo buddyblogvideos_get_post_publish_unpublish_link( get_the_ID() );?>
+                        <?php echo buddyblogvideos_get_edit_link();?>
+                        <?php echo buddyblogvideos_get_delete_link();?>
                     </div>     
                 </div>
 
