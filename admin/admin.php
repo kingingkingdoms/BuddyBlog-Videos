@@ -254,7 +254,7 @@ class BuddyBlogVideos_Admin_Settings_Helper {
 	 * Add option page
 	 */
 	public function admin_menu() {
-		add_options_page( __( 'BuddyBlogVideos Settings', 'buddyblogvideos' ), __( 'BuddyBlog Articles', 'buddyblogvideos' ), 'manage_options', 'buddyblogvideos', array(
+		add_options_page( __( 'BuddyBlogVideos Settings', 'buddyblogvideos' ), __( 'BuddyBlog Videos', 'buddyblogvideos' ), 'manage_options', 'buddyblogvideos', array(
 			$this->page,
 			'render',
 		) );
