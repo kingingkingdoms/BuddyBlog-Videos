@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBlog Articles
+ * Plugin Name: BuddyBlog Videos
  * Version: 1.3.2
  * Author: BuddyDev
  * Author URI: https://buddydev.com/members/sbrajesh/
@@ -18,7 +18,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 /**
  * BuddyBlog main class
  */
-class BuddyBlogArticles {
+class BuddyBlogVideos {
 
 	/**
 	 * Singleton instance
@@ -90,8 +90,8 @@ class BuddyBlogArticles {
 	 * Setup constants.
 	 */
 	private function setup_constants() {
-		if ( ! defined( 'BUDDYBLOGARTICLES_ARCHIVE_SLUG' ) ) {
-			define( 'BUDDYBLOGARTICLES_ARCHIVE_SLUG', 'my-articles' );
+		if ( ! defined( 'BUDDYBLOGVIDEOS_ARCHIVE_SLUG' ) ) {
+			define( 'BUDDYBLOGVIDEOS_ARCHIVE_SLUG', 'my-videos' );
 		}
 	}
 	/**
@@ -99,7 +99,7 @@ class BuddyBlogArticles {
 	 */
 	public function load() {
 		$files = array(
-			'buddyblogarticles-loader.php',
+			'buddyblogvideos-loader.php',
 		);
 
 		if ( is_admin() && ! defined( 'DOING_AJAX' ) ) {
@@ -115,14 +115,14 @@ class BuddyBlogArticles {
 	 * Load translation files
 	 */
 	public function load_textdomain() {
-		load_plugin_textdomain( 'buddyblogarticles', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
+		load_plugin_textdomain( 'buddyblogvideos', false, dirname( plugin_basename( __FILE__ ) ) . '/languages' );
 	}
 
 	/**
 	 * Load comment js on singular posts.
 	 */
 	public function load_comment_js() {
-		if ( bp_is_current_component( 'buddyblogarticles' ) && bp_is_current_action( 'my-articles' ) ) {
+		if ( bp_is_current_component( 'buddyblogvideos' ) && bp_is_current_action( 'my-videos' ) ) {
 			wp_enqueue_script( 'comment-reply' );
 		}
 	}
@@ -132,8 +132,8 @@ class BuddyBlogArticles {
 	 */
 	public function install() {
 		$default = array(
-			//'root_slug'		=> 'articles',
-			'post_type'             => 'article',
+			//'root_slug'		=> 'videos',
+			'post_type'             => 'video',
 			'post_status'           => 'publish',
 			'comment_status'        => 'open',
 			'show_comment_option'   => 1,
@@ -156,8 +156,8 @@ class BuddyBlogArticles {
 			'max_upload_count'      => 2,
 		);
 
-		if ( ! get_site_option( 'buddyblogarticles-settings' ) ) {
-			add_site_option( 'buddyblogarticles-settings', $default );
+		if ( ! get_site_option( 'buddyblogvideos-settings' ) ) {
+			add_site_option( 'buddyblogvideos-settings', $default );
 		}
 
 	}
@@ -195,9 +195,9 @@ class BuddyBlogArticles {
  *
  * @return BuddyBlog
  */
-function buddyblogarticles() {
-	return BuddyBlogArticles::get_instance();
+function buddyblogvideos() {
+	return BuddyBlogVideos::get_instance();
 }
 
 // Instantiate.
-buddyblogarticles();
+buddyblogvideos();
