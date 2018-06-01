@@ -1,4 +1,4 @@
-<?php if ( buddyblogarticles_user_has_posted() ): ?>
+<?php if ( buddyblogvideos_user_has_posted() ): ?>
 <?php
     if ( bp_is_my_profile() || is_super_admin() ) {
         $status = 'any';
@@ -8,9 +8,9 @@
 	
     $query_args = array(
 		'author'        => bp_displayed_user_id(),
-		'post_type'     => buddyblogarticles_get_posttype(),
+		'post_type'     => buddyblogvideos_get_posttype(),
 		'post_status'   => $status,
-		'p'             => intval( buddyblogarticles_get_post_id( bp_action_variable( 0 ) ) )
+		'p'             => intval( buddyblogvideos_get_post_id( bp_action_variable( 0 ) ) )
     );
 
 
@@ -23,14 +23,14 @@
     
     <?php
         //used to unhook BuddyPress Theme compatibility comment closing function
-        do_action( 'buddyblogarticles_before_blog_post' );
+        do_action( 'buddyblogvideos_before_blog_post' );
     ?>
     <div class="user-post">
         <h2><?php the_title();?></h2>
 
         <div class="post-entry">
 
-            <p class="alignright"><?php printf( __( 'Posted on %1$s', 'buddyblogarticles' ), get_the_time( get_option( 'date_format' ) ) ); ?></p>
+            <p class="alignright"><?php printf( __( 'Posted on %1$s', 'buddyblogvideos' ), get_the_time( get_option( 'date_format' ) ) ); ?></p>
 
             <div class="clear"></div>
             
@@ -47,7 +47,7 @@
 
             </div>
 
-            <?php echo buddyblogarticles_get_edit_link();?>
+            <?php echo buddyblogvideos_get_edit_link();?>
             <div class="clear"></div>
 
         </div>
@@ -55,7 +55,7 @@
 		<?php comments_template('/comments.php'); ?>
         <?php
             //used to hook back BuddyPress Theme compatibility comment closing function
-            do_action( 'buddyblogarticles_after_blog_post' );
+            do_action( 'buddyblogvideos_after_blog_post' );
         ?>
      </div>
 
@@ -65,6 +65,6 @@
         wp_reset_query();
     ?>
     <?php else: ?>
-    <p> <?php _e( 'No Posts found!', 'buddyblogarticles' );?></p>
+    <p> <?php _e( 'No Posts found!', 'buddyblogvideos' );?></p>
 
     <?php endif; ?>
