@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: BuddyBlog Photos
+ * Plugin Name: BuddyBlog Articles
  * Version: 1.3.2
  * Author: BuddyDev
  * Author URI: https://buddydev.com/members/sbrajesh/
