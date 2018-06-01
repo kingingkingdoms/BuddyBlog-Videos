@@ -402,7 +402,7 @@ function buddyblogarticles_get_settings() {
 
 	$default = array(
 		//'root_slug'		=> 'buddyblogarticles',
-		'post_type'             => 'post',
+		'post_type'             => 'article',
 		'post_status'           => 'publish',
 		'comment_status'        => 'open',
 		'show_comment_option'   => 1,
