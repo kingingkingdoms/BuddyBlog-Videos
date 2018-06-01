@@ -76,10 +76,10 @@
                    
         <?php endwhile;?>
             <div class="pagination">
-                <?php buddyblogarticles_paginate(); ?>
+                <?php buddyblogvideos_paginate(); ?>
             </div>
     <?php else: ?>
-            <p><?php _e( 'There are no posts by this user at the moment. Please check back later!', 'buddyblogarticles' );?></p>
+            <p><?php _e( 'There are no posts by this user at the moment. Please check back later!', 'buddyblogvideos' );?></p>
     <?php endif; ?>
 
     <?php 
@@ -87,7 +87,7 @@
        wp_reset_query();
     ?>
 
-<?php elseif ( bp_is_my_profile() && buddyblogarticles_user_can_post( get_current_user_id() ) ): ?>
-    <p> <?php _e( "You haven't posted anything yet.", 'buddyblogarticles' );?> <a href="<?php echo buddyblogarticles_get_new_url();?>"> <?php _e( 'New Post', 'buddyblogarticles' );?></a></p>
+<?php elseif ( bp_is_my_profile() && buddyblogvideos_user_can_post( get_current_user_id() ) ): ?>
+    <p> <?php _e( "You haven't posted anything yet.", 'buddyblogvideos' );?> <a href="<?php echo buddyblogvideos_get_new_url();?>"> <?php _e( 'New Post', 'buddyblogvideos' );?></a></p>
 
 <?php endif; ?>
