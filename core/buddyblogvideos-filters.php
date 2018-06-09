@@ -176,7 +176,7 @@ function buddyblogvideos_filter_post_permalink( $permalink, $post, $leavename ) 
 
 }
 
-add_filter( 'post_link', 'buddybloghotos_filter_post_permalink', 10, 3 );
+add_filter( 'post_link', 'buddyblogvideos_filter_post_permalink', 10, 3 );
 
 /**
  * Fix edit post link to point to our intended link.
