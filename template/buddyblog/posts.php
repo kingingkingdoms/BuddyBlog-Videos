@@ -34,7 +34,7 @@
 
             <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-                <div class="author-box">
+                <div class="buddyblog-video-author-box">
                     <?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
                     <p><?php printf( _x( 'by %s', 'Post written by...', 'buddyblogvideos' ), bp_core_get_userlink( $post->post_author ) ); ?></p>
 
@@ -43,29 +43,29 @@
                     <?php endif; ?>
                 </div>
 
-                <div class="post-content">
+                <div class="buddyblog-video-content">
                     
                     <?php if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( get_the_ID() ) ):?>
                         
-                        <div class="post-featured-image">
+                        <div class="buddyblog-video-featured-image">
                             <?php  the_post_thumbnail();?>
                         </div>
 
                     <?php endif;?>
 
-                    <h2 class="posttitle"> <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddyblogvideos' ); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a> </h2>
+                    <h2 class="buddyblog-video-title"> <a href="<?php the_permalink(); ?>" rel="bookmark" title="<?php _e( 'Permanent Link to', 'buddyblogvideos' ); ?> <?php the_title_attribute(); ?>"><?php the_title(); ?></a> </h2>
 
-                    <p class="date"><?php printf( __( '%1$s <span>in %2$s</span>', 'buddyblogvideos' ), get_the_date(), get_the_category_list( ', ' ) ); ?></p>
+                    <p class="buddyblog-video-date"><?php printf( __( '%1$s <span>in %2$s</span>', 'buddyblogvideos' ), get_the_date(), get_the_category_list( ', ' ) ); ?></p>
 
-                    <div class="entry">
+                    <div class="buddyblog-video-entry">
 
                         <?php the_content( __( 'Read the rest of this entry &rarr;', 'buddyblogvideos' ) ); ?>
-                        <?php wp_link_pages( array( 'before' => '<div class="page-link"><p>' . __( 'Pages: ', 'buddyblogvideos' ), 'after' => '</p></div>', 'next_or_number' => 'number' ) ); ?>
+                        <?php wp_link_pages( array( 'before' => '<div class="buddyblog-video-page-link"><p>' . __( 'Pages: ', 'buddyblogvideos' ), 'after' => '</p></div>', 'next_or_number' => 'number' ) ); ?>
                     </div>
 
-                    <p class="postmetadata"><?php the_tags( '<span class="tags">' . __( 'Tags: ', 'buddyblogvideos' ), ', ', '</span>' ); ?> <span class="comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogvideos' ), __( '1 Comment &#187;', 'buddyblogvideos' ), __( '% Comments &#187;', 'buddyblogvideos' ) ); ?></span></p>
+                    <p class="buddyblog-video-meta-data"><?php the_tags( '<span class="buddyblog-video-tags">' . __( 'Tags: ', 'buddyblogvideos' ), ', ', '</span>' ); ?> <span class="buddyblog-video-comments"><?php comments_popup_link( __( 'No Comments &#187;', 'buddyblogvideos' ), __( '1 Comment &#187;', 'buddyblogvideos' ), __( '% Comments &#187;', 'buddyblogvideos' ) ); ?></span></p>
 
-                    <div class="post-actions">
+                    <div class="buddyblog-video-actions">
                         <?php echo buddyblogvideos_get_post_publish_unpublish_link( get_the_ID() );?>
                         <?php echo buddyblogvideos_get_edit_link();?>
                         <?php echo buddyblogvideos_get_delete_link();?>
@@ -75,7 +75,7 @@
 			</div>
                    
         <?php endwhile;?>
-            <div class="pagination">
+            <div class="buddyblog-video-pagination">
                 <?php buddyblogvideos_paginate(); ?>
             </div>
     <?php else: ?>
