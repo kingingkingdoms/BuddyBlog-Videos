@@ -34,15 +34,6 @@
 
             <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-                <div class="buddyblog-video-author-box">
-                    <?php echo get_avatar( get_the_author_meta( 'user_email' ), '50' ); ?>
-                    <p><?php printf( _x( 'by %s', 'Post written by...', 'buddyblogvideos' ), bp_core_get_userlink( $post->post_author ) ); ?></p>
-
-                    <?php if ( is_sticky() ) : ?>
-                        <span class="activity sticky-post"><?php _ex( 'Featured', 'Sticky post', 'buddyblogvideos' ); ?></span>
-                    <?php endif; ?>
-                </div>
-
                 <div class="buddyblog-video-content">
                     
                     <?php if ( function_exists( 'has_post_thumbnail' ) && has_post_thumbnail( get_the_ID() ) ):?>
