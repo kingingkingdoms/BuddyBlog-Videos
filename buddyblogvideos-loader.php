@@ -66,7 +66,7 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 			'root_slug'             => BP_BUDDYBLOGVIDEOS_SLUG,
 			'has_directory'         => false,
 			'notification_callback' => 'buddyblogvideos_format_notifications',
-			'search_string'         => __( 'Search Posts...', 'buddyblogvideos' ),
+			'search_string'         => __( 'Search Videos...', 'buddyblogvideos' ),
 			'global_tables'         => array(),
 		);
 
@@ -124,12 +124,12 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 			'position'        => 30,
 		);
 
-		$sub_nav['new-post'] = array(
-			'name'            => __( 'New Post', 'buddyblogvideos' ),
+		$sub_nav['new-video'] = array(
+			'name'            => __( 'New Video', 'buddyblogvideos' ),
 			'slug'            => 'edit',
 			'parent_url'      => $blog_link,
 			'parent_slug'     => $this->slug,
-			'screen_function' => array( $screen, 'new_post' ),
+			'screen_function' => array( $screen, 'new_video' ),
 			'user_has_access' => bp_is_my_profile(),
 			'position'        => 30,
 		);
@@ -157,9 +157,9 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 			$user_domain = bp_loggedin_user_domain();
 			$blog_link   = trailingslashit( $user_domain . $this->slug );
 
-			$title = __( 'Posts', 'buddyblogvideos' );
+			$title = __( 'Videos', 'buddyblogvideos' );
 			// My Posts.
-			$wp_admin_nav['posts'] = array(
+			$wp_admin_nav['videos'] = array(
 				'parent' => $bp->my_account_menu_id,
 				'id'     => 'my-account-' . $this->id,
 				'title'  => $title,
@@ -169,16 +169,16 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 			$wp_admin_nav['my-videos'] = array(
 				'parent'   => 'my-account-' . $this->id,
 				'id'       => 'my-account-' . $this->id . '-my-videos',
-				'title'    => __( 'My Posts', 'buddyblogvideos' ),
+				'title'    => __( 'All Videos', 'buddyblogvideos' ),
 				'href'     => trailingslashit( $blog_link ),
 				'position' => 10,
 			);
 
 			// Add new Posts.
-			$wp_admin_nav['new-post'] = array(
+			$wp_admin_nav['new-video'] = array(
 				'parent'   => 'my-account-' . $this->id,
-				'id'       => 'my-account-' . $this->id . '-new-post',
-				'title'    => __( 'New Post', 'buddyblogvideos' ),
+				'id'       => 'my-account-' . $this->id . '-new-video',
+				'title'    => __( 'New Video', 'buddyblogvideos' ),
 				'href'     => trailingslashit( $blog_link . 'edit' ),
 				'position' => 20,
 			);
@@ -202,7 +202,7 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 
 			if ( bp_is_my_profile() && ! bp_is_single_item() ) {
 
-				$bp->bp_options_title = __( 'Posts', 'buddyblogvideos' );
+				$bp->bp_options_title = __( 'Videos', 'buddyblogvideos' );
 
 			} elseif ( ! bp_is_my_profile() && ! bp_is_single_item() ) {
 
