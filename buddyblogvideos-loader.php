@@ -116,7 +116,7 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 		}
 		// Add the Group Invites nav item.
 		$sub_nav['my-videos'] = array(
-			'name'            => __( 'Videos', 'buddyblogvideos' ),
+			'name'            => __( 'All Videos', 'buddyblogvideos' ),
 			'slug'            => BUDDYBLOGVIDEOS_ARCHIVE_SLUG,
 			'parent_url'      => $blog_link,
 			'parent_slug'     => $this->slug,
