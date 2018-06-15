@@ -7,7 +7,7 @@
 <?php if ( buddyblogvideos_user_has_posted() ): ?>
 <?php
     //let us build the post query
-    if ( is_super_admin() ) {
+    if ( bp_is_my_profile() || is_super_admin() ) {
  		$status = 'any';
 	} else {
 		$status = 'publish';
