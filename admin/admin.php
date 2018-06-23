@@ -191,7 +191,7 @@ class BuddyBlogVideos_Admin_Settings_Helper {
 			),
 			array(
 				'name'    => 'publish_cap',
-				'label'   => __( 'Which capability is required for pusblishing?', 'buddyblogvideos' ),
+				'label'   => __( 'Which capability is required for publishing?', 'buddyblogvideos' ),
 				'desc'    => __( 'Please check for https://codex.wordpress.org/Roles_and_Capabilities allowed capabilities.', 'buddyblogvideos' ),
 				'type'    => 'text',
 				'default' => 'read',
