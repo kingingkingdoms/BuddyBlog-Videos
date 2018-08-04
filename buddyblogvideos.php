@@ -1,14 +1,11 @@
 <?php
-/**
- * Plugin Name: BuddyBlog Videos
- * Version: 1.3.2
- * Author: K&L
- * Author URI: https://millionairedigest.com/members/kl/
- * Plugin URI: https://millionairedigest.com/
- * Description: Add a BuddyPress profile nav tab called "Videos" to user's profiles for giving our users the ability to display all of the videos they've created.
- *
- * @package buddyblog
- */
+/*
+Plugin Name: Millionaire's Digest Profile Videos
+Description: Add a BuddyPress profile nav tab called "Videos" to user's profiles for giving our users the ability to display all of the videos they've created.
+Version: 1.0.0
+Author: K&L (Founder of the Millionaire's Digest)
+Author URI: https://millionairedigest.com/
+*/
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
