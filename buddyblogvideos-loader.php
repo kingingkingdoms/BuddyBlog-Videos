@@ -58,7 +58,7 @@ class BuddyBlogVideos_Core_Component extends BP_Component {
 
 		// Define a slug, if necessary.
 		if ( ! defined( 'BP_BUDDYBLOGVIDEOS_SLUG' ) ) {
-			define( 'BP_BUDDYBLOGVIDEOS_SLUG', $this->id );
+			define( 'BP_BUDDYBLOGVIDEOS_SLUG', 'videos' );
 		}
 
 		$globals = array(
